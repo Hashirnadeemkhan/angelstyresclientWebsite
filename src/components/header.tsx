@@ -44,7 +44,7 @@ export function Header() {
               <Facebook className="w-4 h-4 hover:text-red-300 cursor-pointer transition-all duration-300 hover:scale-110" />
               <Instagram className="w-4 h-4 hover:text-red-300 cursor-pointer transition-all duration-300 hover:scale-110" />
               <a
-                href="https://wa.me/447407647395"
+                href="https://wa.me/447476306677"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-4 h-4 hover:text-red-300 cursor-pointer transition-all duration-300 hover:scale-110"
@@ -63,11 +63,14 @@ export function Header() {
             <div className="hidden lg:flex items-center space-x-6 font-medium">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
-                <span>11 Spinney Rise Birstall, Leicester LE4 3DY</span>
+                <span>75 Westgate 
+Cleckheaton
+BD19 5HS
+</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>info@amishbreakdown.com</span>
+                <span>info@angletyres@gmai.com</span>
               </div>
             </div>
           </div>

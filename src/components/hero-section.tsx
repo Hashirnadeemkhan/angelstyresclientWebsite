@@ -18,7 +18,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen lg:mt-0 mt-20 flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+    <section className="relative min-h-screen mt-20 flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       <div className="absolute inset-0 bg-gradient-to-r from-red-600/5 via-transparent to-red-600/5"></div>
 
       {/* Animated background pattern */}
@@ -49,7 +49,7 @@ export function HeroSection() {
                   Tyre Repair & Replacement
                 </span>
                 <span className="block text-white text-2xl sm:text-3xl lg:text-4xl font-normal mt-2 animate-fade-in-up animation-delay-400">
-                  Amish Tyre & Recovery Services
+                  Angles Tyres 
                 </span>
               </h1>
 
@@ -120,7 +120,7 @@ export function HeroSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-3xl blur-xl animate-pulse"></div>
 
               <Image
-                src="/hero.png"
+                src="/hero1.png"
                 height={600}
                 width={800}
                 alt="Mobile tyre repair service in Cleckheaton"

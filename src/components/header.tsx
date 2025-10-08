@@ -28,7 +28,7 @@ export function Header() {
   }, [])
 
   return (
-    <header className="fixed top-0 w-full z-50">
+    <header className="fixed top-0 w-full z-50 shadow-md">
       {/* Top Bar */}
       <div
         className={`h-10 flex justify-center items-center bg-red-600 text-white text-sm transition-all duration-500 ease-in-out ${
@@ -63,14 +63,11 @@ export function Header() {
             <div className="hidden lg:flex items-center space-x-6 font-medium">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
-                <span>75 Westgate 
-Cleckheaton
-BD19 5HS
-</span>
+                <span>75 Westgate, Cleckheaton BD19 5HS</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>info@angletyres@gmai.com</span>
+                <span>info@angletyres@gmail.com</span>
               </div>
             </div>
           </div>
@@ -81,8 +78,8 @@ BD19 5HS
       <div
         className={`transition-all duration-500 ease-in-out fixed w-full ${
           isScrolled
-            ? "bg-black/95 top-0 backdrop-blur-md shadow-2xl border-b border-red-800"
-            : "bg-black top-10 border-b border-red-800"
+            ? "bg-white/95 top-0 backdrop-blur-md shadow-lg border-b border-red-200"
+            : "bg-white top-10 border-b border-red-200"
         }`}
       >
         <div className="container mx-auto px-4">
@@ -103,10 +100,10 @@ BD19 5HS
                   <Link
                     key={item}
                     href={`#${item}`}
-                    className={`transition-colors duration-300 ${
+                    className={`font-medium transition-colors duration-300 ${
                       isScrolled
-                        ? "text-white hover:text-red-500"
-                        : "text-white hover:text-red-400"
+                        ? "text-gray-800 hover:text-red-600"
+                        : "text-gray-800 hover:text-red-600"
                     }`}
                   >
                     {item.charAt(0).toUpperCase() + item.slice(1).replace("-", " ")}
@@ -118,34 +115,21 @@ BD19 5HS
             {/* Call Options (Desktop) */}
             <div className="hidden lg:flex items-center space-x-4">
               <div
-                className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${
+                className={`flex items-center space-x-3 px-4 py-2 rounded-lg border transition-all duration-300 hover:scale-105 ${
                   isScrolled
-                    ? "bg-red-50 border border-red-200 hover:bg-red-100"
-                    : "bg-black/50 border border-red-700 hover:bg-red-900/50"
+                    ? "bg-red-50 border-red-200 hover:bg-red-100"
+                    : "bg-white border-red-300 hover:bg-red-50"
                 }`}
               >
                 <div>
-                  <div
-                    className={`text-xs transition-colors duration-300 ${
-                      isScrolled ? "text-gray-600" : "text-gray-400"
-                    }`}
-                  >
-                    Call to Questions
-                  </div>
-                  <div
-                    className={`font-semibold transition-colors duration-300 ${
-                      isScrolled ? "text-white" : "text-white"
-                    }`}
-                  >
-                    7476 306677
-
-                  </div>
+                  <div className="text-xs text-gray-500">Call for Help</div>
+                  <div className="font-semibold text-gray-900">7476 306677</div>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <a
                     href="tel:447476306677"
-                    className="p-2 bg-red-500 rounded-full hover:bg-red-600 transition"
+                    className="p-2 bg-red-600 rounded-full hover:bg-red-700 transition"
                   >
                     <Phone className="w-4 h-4 text-white" />
                   </a>
@@ -164,7 +148,7 @@ BD19 5HS
             {/* Mobile menu button */}
             <button
               className={`lg:hidden transition-all duration-300 hover:scale-110 ${
-                isScrolled ? "text-white" : "text-white"
+                isScrolled ? "text-gray-800" : "text-gray-800"
               }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -176,7 +160,7 @@ BD19 5HS
           {isMenuOpen && (
             <div
               className={`lg:hidden mt-4 pb-4 border-t transition-all duration-300 animate-in slide-in-from-top ${
-                isScrolled ? "border-red-800" : "border-red-800"
+                isScrolled ? "border-red-200" : "border-red-200"
               }`}
             >
               <nav className="flex flex-col space-y-4 pt-4">
@@ -185,11 +169,7 @@ BD19 5HS
                     <Link
                       key={item}
                       href={`#${item}`}
-                      className={`transition-colors duration-300 ${
-                        isScrolled
-                          ? "text-white hover:text-red-500"
-                          : "text-white hover:text-red-400"
-                      }`}
+                      className="text-gray-800 hover:text-red-600 transition-colors duration-300"
                     >
                       {item.charAt(0).toUpperCase() + item.slice(1).replace("-", " ")}
                     </Link>

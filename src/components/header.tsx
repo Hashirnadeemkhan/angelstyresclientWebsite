@@ -137,19 +137,20 @@ BD19 5HS
                       isScrolled ? "text-white" : "text-white"
                     }`}
                   >
-                    7886 051544
+                    7476 30667
+
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <a
-                    href="tel:447886051544"
+                    href="tel:447476306677"
                     className="p-2 bg-red-500 rounded-full hover:bg-red-600 transition"
                   >
                     <Phone className="w-4 h-4 text-white" />
                   </a>
                   <a
-                    href="https://wa.me/447886051544"
+                    href="https://wa.me/447476306677"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition"

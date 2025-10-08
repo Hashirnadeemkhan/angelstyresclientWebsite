@@ -18,22 +18,22 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    text: "Sports event drop-off was smooth and stylish. No stress about parking or traffic. Will use them again for all upcoming events in London!",
+    name: "David Williams",
+    text: "My car had a flat tyre near Cleckheaton, and these guys arrived within 15 minutes! Quick puncture repair and super friendly service. Highly recommended for emergencies.",
     image: "/customer1.jpg",
     rating: 5,
   },
   {
     id: 2,
-    name: "Michael Chen",
-    text: "Outstanding service quality and professionalism. The team exceeded our expectations with their attention to detail and timely delivery.",
+    name: "Emma Roberts",
+    text: "Excellent experience! I got my car tyres replaced at home, and the technician even balanced all wheels properly. Fast, affordable, and professional service!",
     image: "/customer2.jpg",
     rating: 5,
   },
   {
     id: 3,
-    name: "Emma Thompson",
-    text: "Absolutely incredible experience from start to finish. The seamless process and exceptional customer care made all the difference.",
+    name: "James Turner",
+    text: "Had a TPMS sensor issue — they supplied, programmed, and fitted it perfectly. The technician explained everything clearly. Couldn’t ask for better service.",
     image: "/customer3.jpg",
     rating: 5,
   },
@@ -54,7 +54,7 @@ const TestimonialCarousel: React.FC = () => {
     setCurrentIndex(index);
   };
 
-  // Auto slide
+  // Auto slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(nextTestimonial, 5000);
     return () => clearInterval(interval);
@@ -72,19 +72,16 @@ const TestimonialCarousel: React.FC = () => {
   };
 
   return (
-    <section
-      id="testimonial"
-      className="relative min-h-screen bg-black py-20 overflow-hidden"
-    >
+    <section id="testimonial" className="relative min-h-screen bg-black py-20 overflow-hidden">
       <div className="container mx-auto max-w-6xl px-4">
         {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-white">
-            What Our Customers are Saying?
+            What Our Customers Are Saying
           </h2>
         </div>
 
-        {/* Testimonial Card with Framer Motion */}
+        {/* Testimonial Card */}
         <div className="relative max-w-6xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div

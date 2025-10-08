@@ -37,7 +37,7 @@ export function Footer() {
                 </div>
                 <div>
                   <h2 className="text-2xl lg:text-3xl font-bold text-white">
-                    Amish Breakdown Recovery
+                    Angles Tyres
                   </h2>
                   <div className="flex items-center space-x-2 mt-2">
                     <Clock className="w-4 h-4 text-red-700 animate-pulse" />
@@ -49,20 +49,19 @@ export function Footer() {
               </div>
 
               <p className="text-lg text-gray-300 max-w-xl leading-relaxed">
-                Professional automotive recovery services across the region.
-                When you&#39;re stuck, we&#39;re your trusted solution with
-                years of experience and rapid response times.
+                Professional tyre services across Cleckheaton and nearby areas.
+                Fast, reliable, and affordable mobile tyre repair and replacement service.
               </p>
 
               {/* Emergency Call To Action */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="tel:447886051544">
+                <a href="tel:+447476306677">
                   <Button
                     size="lg"
                     className="bg-red-700 hover:bg-red-800 text-white font-bold px-8 py-6 rounded-xl shadow-lg hover:shadow-red-700/30 transition-all duration-300 hover:scale-105"
                   >
                     <Phone className="w-5 h-5 mr-3" />
-                    Emergency: 7886051544
+                    Emergency: +44 7476 306677
                   </Button>
                 </a>
                 <div className="bg-white/5 border border-red-700/20 rounded-xl p-4 flex items-center space-x-3 backdrop-blur-sm">
@@ -92,15 +91,12 @@ export function Footer() {
               </h3>
               <ul className="space-y-4">
                 {[
-                  "Car Breakdown Recovery",
-                  "Jump Start Service",
-                  "Fuel Delivery",
-                  "Tire Change Assistance",
-                  "Vehicle Transportation",
-                  "Towing services",
-                  "Auction collection",
-                  "Dealership collection",
-                  "Mobile mechanic service",
+                  "Emergency Tyre Repair",
+                  "Tyre Replacement",
+                  "Puncture Repair",
+                  "Car Tyre Replacement",
+                  "Wheel Balancing",
+                  "TPMS Sensor Supplied, Programmed and Fitted",
                 ].map((service) => (
                   <li key={service} className="group">
                     <a
@@ -136,10 +132,10 @@ export function Footer() {
                         Emergency Hotline
                       </div>
                       <a
-                        href="tel:447886051544"
+                        href="tel:+447476306677"
                         className="text-white font-bold hover:underline"
                       >
-                        7886051544
+                        +44 7476 306677
                       </a>
                     </div>
                   </div>
@@ -155,9 +151,9 @@ export function Footer() {
                       <div className="text-sm font-semibold text-red-700">
                         Service Area
                       </div>
-                      <div className="text-gray-300 text-sm">11 Spinney Rise</div>
+                      <div className="text-gray-300 text-sm">75 Westgate</div>
                       <div className="text-gray-300 text-sm">
-                        Birstall, Leicester LE4 3DY
+                        Cleckheaton BD19 5HS
                       </div>
                     </div>
                   </div>
@@ -189,7 +185,7 @@ export function Footer() {
           <div className="container mx-auto px-6 lg:px-12 xl:px-16 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-                <span>© 2024 Amish Breakdown Recovery</span>
+                <span>© 2025 Angles Tyres</span>
                 <span className="hidden md:inline">•</span>
                 <a href="#" className="hover:text-red-700 transition-colors">
                   Privacy Policy
@@ -215,7 +211,7 @@ export function Footer() {
                 <div className="text-sm text-gray-400">Licensed & Insured</div>
                 <div className="w-2 h-2 bg-red-700 rounded-full animate-pulse"></div>
                 <div className="text-sm text-red-700 font-semibold">
-                  Professional Recovery Services
+                  Professional Tyre Services
                 </div>
               </div>
             </div>

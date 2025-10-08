@@ -32,21 +32,21 @@ const featuredServices = [
     title: "Car Tyre Replacement",
     description:
       "We specialize in car tyre replacements for all makes and models. From premium to budget tyres, we provide the best options to match your driving style and vehicle needs.",
-    image: "/car-tyre-replacement.jpg",
+    image: "/car-tyre-replacement.jpeg",
     delay: 300,
   },
   {
     title: "Wheel Balancing",
     description:
       "Ensure a smooth, vibration-free drive with our expert wheel balancing service. Proper balancing improves tyre lifespan, fuel efficiency, and overall driving comfort.",
-    image: "/wheel-balancing.png",
+    image: "/wheel-balancing.jpeg",
     delay: 400,
   },
   {
     title: "TPMS Sensor Supplied, Programmed & Fitted",
     description:
       "We supply, program, and fit new TPMS (Tyre Pressure Monitoring System) sensors for all vehicles. Maintain accurate tyre pressure readings for better safety and fuel efficiency.",
-    image: "/tpms-sensor.jpg",
+    image: "/tpms-sensor.jpeg",
     delay: 500,
   },
 ]
@@ -133,14 +133,14 @@ export function ServicesSection() {
 
                   <Button
                     asChild
-                    className="bg-red-700 text-white hover:text-black font-semibold px-6 py-3 rounded-none relative overflow-hidden group/btn transition-all duration-300"
+                    className="bg-red-700 text-white hover:text-white font-semibold px-6 py-3 rounded-none relative overflow-hidden group/btn transition-all duration-300"
                   >
                     <a href="tel:447886051544">
                       <span className="relative z-10 flex items-center gap-2">
                         Book Now
                         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
                       </span>
-                      <div className="absolute inset-0 bg-black transform translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300"></div>
+                      <div className="absolute inset-0 bg-black  transform translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300"></div>
                     </a>
                   </Button>
                 </CardContent>

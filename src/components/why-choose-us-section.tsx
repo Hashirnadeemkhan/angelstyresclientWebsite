@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Truck, Clock, Shield, Headphones } from "lucide-react";
+import { Wrench, Clock, Shield, Headphones } from "lucide-react";
 import Image from "next/image";
 
 export default function WhyChooseUsSection() {
@@ -21,10 +21,10 @@ export default function WhyChooseUsSection() {
   }, []);
 
   const features = [
-    { icon: Truck, title: "Professional Fleet", delay: 0 },
-    { icon: Clock, title: "Rapid Response", delay: 200 },
-    { icon: Shield, title: "Certified Technicians", delay: 400 },
-    { icon: Headphones, title: "24/7 Support", delay: 600 },
+    { icon: Wrench, title: "Mobile Tyre Repair Experts", delay: 0 },
+    { icon: Clock, title: "15-Min Rapid Response", delay: 200 },
+    { icon: Shield, title: "Certified & Insured Technicians", delay: 400 },
+    { icon: Headphones, title: "24/7 Emergency Support", delay: 600 },
   ];
 
   return (
@@ -38,8 +38,8 @@ export default function WhyChooseUsSection() {
         <Image
           height={500}
           width={500}
-          src="/service4.jpg"
-          alt="Professional breakdown recovery service"
+          src="/tyre-bg.jpg"
+          alt="Professional tyre repair service"
           className="w-full h-full object-cover opacity-10"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-black/90"></div>
@@ -82,14 +82,16 @@ export default function WhyChooseUsSection() {
               <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
                 Why You Should Choose{" "}
                 <span className="text-red-500 relative">
-                  Amish Breakdown Recovery
+                  Angles Tyres Services
                   <div className="absolute -bottom-2 left-0 w-full h-1 bg-red-600 rounded-full animate-pulse"></div>
                 </span>
               </h2>
 
               {/* Description */}
               <p className="text-xl text-gray-200 leading-relaxed">
-                We deliver reliable, professional, and efficient breakdown recovery services across London that ensure your safety and peace of mind in every emergency situation.
+                We specialize in **emergency tyre repair, replacement, and puncture services**
+                for all vehicle types. Our experts arrive within minutes — ensuring you’re back
+                on the road safely with reliable, high-quality service every time.
               </p>
             </div>
           </div>

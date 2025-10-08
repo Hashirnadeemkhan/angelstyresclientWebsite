@@ -40,7 +40,7 @@ export default function LuxurySection() {
                 <div key={i} className="w-2 h-2 bg-red-700 transform rotate-45" />
               ))}
             </div>
-            <span className="text-gray-300 font-medium">Premium Service</span>
+            <span className="text-gray-300 font-medium">Trusted Mobile Tyre Experts</span>
             <div className="flex gap-1">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="w-2 h-2 bg-red-700 transform rotate-45" />
@@ -53,13 +53,13 @@ export default function LuxurySection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            Unmatched Reliability and <span className="text-red-700">Excellence</span>
+            Fast, Professional & <span className="text-red-700">Always There When You Need Us</span>
           </h2>
         </div>
 
         {/* Feature Cards */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Emergency Response Card */}
+          {/* Emergency Tyre Service Card */}
           <div
             className={`group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-1000 delay-300 hover:shadow-2xl hover:-translate-y-2 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
@@ -68,15 +68,14 @@ export default function LuxurySection() {
             <div className="p-8 lg:p-10">
               <div className="inline-flex items-center gap-3 bg-red-700 text-white px-4 py-2 rounded-lg font-semibold mb-6 group-hover:bg-red-800 transition-colors">
                 <Clock className="w-5 h-5" />
-                Emergency Response
+                24/7 Tyre Assistance
               </div>
 
               <div className="mb-8">
-                <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4">Rapid Response Fleet</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4">Emergency Tyre Repair & Replacement</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Our state-of-the-art recovery vehicles are equipped with the latest technology and tools. Available
-                  24/7 across the region, we guarantee fast response times and professional service when you need it
-                  most.
+                  Flat tyre or sudden puncture? Our mobile tyre experts reach you fast with all the tools needed to fix,
+                  replace, or balance your tyre — anytime, anywhere in Cleckheaton and surrounding areas.
                 </p>
               </div>
 
@@ -106,19 +105,19 @@ export default function LuxurySection() {
               <div className="absolute top-4 right-4 z-20">
                 <div className="bg-red-700 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2">
                   <Wrench className="w-4 h-4" />
-                  Professional Equipment
+                  Mobile Tyre Van
                 </div>
               </div>
               <Image
                 src="/service8.jpg"
-                alt="Professional tow truck with emergency equipment"
+                alt="Mobile tyre repair and emergency service van"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
             </div>
           </div>
 
-          {/* Professional Service Card */}
+          {/* Professional Technicians Card */}
           <div
             className={`group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-1000 delay-500 hover:shadow-2xl hover:-translate-y-2 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
@@ -131,17 +130,17 @@ export default function LuxurySection() {
               </div>
 
               <div className="mb-8">
-                <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4">Expert Technicians</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4">Trusted Tyre Experts</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Our certified mechanics and recovery specialists are trained to handle any situation with precision
-                  and care. Fully insured and experienced, ensuring your vehicle and safety are our top priority.
+                  From puncture repairs to TPMS sensor programming, our fully insured technicians use modern tools to
+                  ensure your car’s safety and performance. Quality workmanship with a professional attitude — every time.
                 </p>
               </div>
 
               {/* Contact Us Button → direct call */}
               <div className="flex justify-between items-end">
                 <a
-                  href="tel:447886051544"
+                  href="tel:+447476306677"
                   className="bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   <span className="flex items-center gap-2">
@@ -164,12 +163,12 @@ export default function LuxurySection() {
               <div className="absolute top-4 right-4 z-20">
                 <div className="bg-red-700 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2">
                   <Award className="w-4 h-4" />
-                  Certified Service
+                  Expert Service
                 </div>
               </div>
               <Image
                 src="/service7.jpg"
-                alt="Professional mechanics working on vehicle"
+                alt="Expert technicians providing tyre replacement service"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
@@ -183,11 +182,11 @@ export default function LuxurySection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {[
+          {[ 
             { number: "15min", label: "Average Response" },
-            { number: "24/7", label: "Service Available" },
-            { number: "98%", label: "Success Rate" },
-            { number: "2000+", label: "Vehicles Recovered" },
+            { number: "24/7", label: "Tyre Support" },
+            { number: "99%", label: "Customer Satisfaction" },
+            { number: "2000+", label: "Tyres Repaired" },
           ].map((stat, index) => (
             <div key={index} className="text-center group">
               <div className="text-3xl lg:text-4xl font-bold text-red-700 mb-2 group-hover:scale-110 transition-transform">

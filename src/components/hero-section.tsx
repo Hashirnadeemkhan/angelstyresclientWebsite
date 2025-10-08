@@ -40,34 +40,34 @@ export function HeroSection() {
             <div className="space-y-6">
               <div className="inline-flex items-center px-6 py-3 bg-red-600/20 border border-red-600/30 text-red-600 rounded-full text-sm font-semibold backdrop-blur-sm animate-pulse">
                 <Star className="w-4 h-4 mr-2 animate-spin" />
-                24/7 Emergency Service Available
+                24/7 Emergency Tyre Service Available
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
                 <span className="text-white block animate-fade-in-up">Fast & Reliable</span>
                 <span className="block text-red-600 animate-fade-in-up animation-delay-200">
-                  Breakdown Recovery
+                  Tyre Repair & Replacement
                 </span>
                 <span className="block text-white text-2xl sm:text-3xl lg:text-4xl font-normal mt-2 animate-fade-in-up animation-delay-400">
-                  Amish Recovery Services
+                  Amish Tyre & Recovery Services
                 </span>
               </h1>
 
               <p className="text-lg lg:text-xl text-gray-300 max-w-2xl leading-relaxed animate-fade-in-up animation-delay-600">
-                Professional automotive recovery services across the region. When you&#39;re stuck, we&#39;re your trusted
-                solution with years of experience.
+                Providing expert tyre repair, puncture fixing, wheel balancing, and TPMS sensor fitting in Cleckheaton
+                and nearby areas. When you&apos;re stuck — we’re just one call away.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-6 animate-fade-in-up animation-delay-800">
               {/* Emergency Call Now -> Direct Call */}
-              <a href="tel:447886051544">
+              <a href="tel:+447476306677">
                 <Button
                   size="lg"
                   className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-7 rounded-xl font-semibold shadow-lg hover:shadow-red-600/25 transition-all duration-300 hover:scale-105"
                 >
                   <Phone className="w-5 h-5 mr-3" />
-                  Emergency Call Now
+                  Call Now for Emergency Help
                 </Button>
               </a>
 
@@ -89,15 +89,15 @@ export function HeroSection() {
                 <Clock className="w-10 h-10 text-red-600 animate-pulse" />
                 <div>
                   <div className="font-bold text-white text-lg">24/7 Service</div>
-                  <div className="text-sm text-gray-400">Always available</div>
+                  <div className="text-sm text-gray-400">Always on standby</div>
                 </div>
               </div>
 
               <div className="flex items-center space-x-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-red-600/20 hover:border-red-600/40 transition-all duration-300 hover:scale-105">
                 <MapPin className="w-10 h-10 text-red-600 animate-bounce" />
                 <div>
-                  <div className="font-bold text-white text-lg">Wide Coverage</div>
-                  <div className="text-sm text-gray-400">Regional service</div>
+                  <div className="font-bold text-white text-lg">Cleckheaton Based</div>
+                  <div className="text-sm text-gray-400">75 Westgate, BD19 5HS</div>
                 </div>
               </div>
 
@@ -105,7 +105,7 @@ export function HeroSection() {
                 <Phone className="w-10 h-10 text-red-600 animate-pulse" />
                 <div>
                   <div className="font-bold text-white text-lg">Quick Response</div>
-                  <div className="text-sm text-gray-400">15min average</div>
+                  <div className="text-sm text-gray-400">Average 15min arrival</div>
                 </div>
               </div>
             </div>
@@ -117,14 +117,13 @@ export function HeroSection() {
             style={{ transform: `translateY(${scrollY * -0.05}px)` }}
           >
             <div className="relative">
-              {/* Animated glow effect */}
               <div className="absolute -inset-4 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded-3xl blur-xl animate-pulse"></div>
 
               <Image
                 src="/hero.png"
                 height={600}
                 width={800}
-                alt="Professional tow truck providing breakdown recovery service"
+                alt="Mobile tyre repair service in Cleckheaton"
                 className="relative w-full h-auto rounded-2xl shadow-2xl animate-float hover:scale-105 transition-transform duration-500"
               />
 

@@ -47,7 +47,7 @@ export function AboutSection() {
                 height={200}
                 width={200}
                 src="/about.png"
-                alt="Angles Tyres professional tyre repair service"
+                alt="Angels Tyres professional tyre repair service"
                 className="w-full h-[400px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -62,7 +62,7 @@ export function AboutSection() {
                 height={400}
                 width={600}
                 src="/about.png"
-                alt="Angles Tyres expert mechanics at work"
+                alt="Angelss Tyres expert mechanics at work"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -117,7 +117,7 @@ export function AboutSection() {
             </div>
 
             <p className="text-lg text-gray-700 leading-relaxed">
-              At Angles Tyres, we provide professional tyre repair, replacement, and wheel balancing
+              At Angels Tyres, we provide professional tyre repair, replacement, and wheel balancing
               services that keep your vehicle running safely and smoothly. Whether it’s a roadside
               emergency or a scheduled tyre change, our expert team ensures fast, reliable, and
               high-quality service every time.

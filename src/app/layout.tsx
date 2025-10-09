@@ -2,21 +2,25 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Amish Breakdown Recovery | 24/7 Vehicle Assistance",
+  title: "Angles Tyres | Emergency Tyre Repair & Replacement Services",
   description:
-    "Amish Breakdown Recovery provides fast and reliable 24/7 roadside assistance, towing, and vehicle recovery services. Get professional breakdown help anytime, anywhere.",
+    "Angles Tyres offers professional and fast tyre repair, puncture repair, wheel balancing, TPMS sensor fitting, and emergency tyre replacement services. Get 24/7 roadside tyre assistance from experts you can trust.",
   generator: "Next.js",
   keywords: [
-    "Breakdown Recovery",
-    "Roadside Assistance",
-    "Towing Service",
-    "Vehicle Recovery",
-    "24/7 Breakdown",
+    "Tyre Repair",
+    "Emergency Tyre Replacement",
+    "Puncture Repair",
+    "Car Tyre Replacement",
+    "Wheel Balancing",
+    "TPMS Sensor Fitting",
+    "Tyre Services",
+    "24/7 Tyre Assistance",
+    "Angles Tyres",
   ],
-  authors: [{ name: "Amish Breakdown Recovery" }],
-  creator: "Amish Breakdown Recovery",
-  publisher: "Amish Breakdown Recovery",
-  applicationName: "Amish Breakdown Recovery",
+  authors: [{ name: "Angles Tyres" }],
+  creator: "Angles Tyres",
+  publisher: "Angles Tyres",
+  applicationName: "Angles Tyres",
   robots: {
     index: true,
     follow: true,
@@ -31,17 +35,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Amish Breakdown Recovery | 24/7 Vehicle Assistance",
+    title: "Angles Tyres | Emergency Tyre Repair & Replacement",
     description:
-      "Professional 24/7 breakdown recovery and roadside assistance. Fast, reliable, and always ready to help.",
-    url: "https://www.amishbreakdownrecovery.com",
-    siteName: "Amish Breakdown Recovery",
+      "Need fast tyre help? Angles Tyres provides emergency tyre repair, puncture repair, car tyre replacement, wheel balancing, and TPMS sensor fitting — available 24/7 for all vehicles.",
+    url: "https://www.angelstyres.co.uk/",
+    siteName: "Angles Tyres",
     images: [
       {
-        url: "/logo.jpg", // 👈 logo as preview image
+        url: "/logo.png", // 👈 replace with your logo
         width: 800,
         height: 800,
-        alt: "Amish Breakdown Recovery Logo",
+        alt: "Angles Tyres Logo",
       },
     ],
     locale: "en_GB",
@@ -49,18 +53,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amish Breakdown Recovery | 24/7 Vehicle Assistance",
+    title: "Angles Tyres | Fast & Reliable Tyre Repair Services",
     description:
-      "Amish Breakdown Recovery provides professional 24/7 breakdown and towing services.",
-    images: ["/logo.jpg"], // 👈 logo for Twitter share
-    creator: "@your_twitter_handle", // optional
+      "Angles Tyres offers 24/7 emergency tyre repair, puncture repair, wheel balancing, and TPMS sensor fitting. Stay safe on the road with expert tyre services.",
+    images: ["/logo.png"], // 👈 replace with your logo
+    creator: "@anglestyres", // optional: your Twitter handle
   },
   icons: {
     icon: "/favicon.ico", // 👈 favicon
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  
 };
 
 export default function RootLayout({

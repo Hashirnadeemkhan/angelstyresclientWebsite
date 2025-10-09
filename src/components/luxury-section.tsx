@@ -109,7 +109,7 @@ export default function LuxurySection() {
                 </div>
               </div>
               <Image
-                src="/service8.jpg"
+                src="/service2.webp"
                 alt="Mobile tyre repair and emergency service van"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -167,7 +167,7 @@ export default function LuxurySection() {
                 </div>
               </div>
               <Image
-                src="/service7.jpg"
+                src="/service1.webp"
                 alt="Expert technicians providing tyre replacement service"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"

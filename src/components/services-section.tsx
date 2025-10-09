@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Star } from "lucide-react"
 
 const featuredServices = [
   {
@@ -18,7 +18,7 @@ const featuredServices = [
     title: "Tyre Replacement",
     description:
       "We offer quick and affordable tyre replacement for all vehicle types. Whether your tyre is damaged or worn out, our experts will replace it with high-quality tyres that ensure safety and performance.",
-    image: "/tyre-replacement.jpeg",
+    image: "/tyre-replacement.png",
     delay: 100,
   },
   {
@@ -32,21 +32,21 @@ const featuredServices = [
     title: "Car Tyre Replacement",
     description:
       "We specialize in car tyre replacements for all makes and models. From premium to budget tyres, we provide the best options to match your driving style and vehicle needs.",
-    image: "/car-tyre-replacement.jpeg",
+    image: "/car-replace.png",
     delay: 300,
   },
   {
     title: "Wheel Balancing",
     description:
       "Ensure a smooth, vibration-free drive with our expert wheel balancing service. Proper balancing improves tyre lifespan, fuel efficiency, and overall driving comfort.",
-    image: "/wheel-balancing.jpeg",
+    image: "/wheel-balancing.png",
     delay: 400,
   },
   {
     title: "TPMS Sensor Supplied, Programmed & Fitted",
     description:
       "We supply, program, and fit new TPMS (Tyre Pressure Monitoring System) sensors for all vehicles. Maintain accurate tyre pressure readings for better safety and fuel efficiency.",
-    image: "/tpms-sensor.jpeg",
+    image: "/tpms-sensor.png",
     delay: 500,
   },
 ]
@@ -75,45 +75,52 @@ export function ServicesSection() {
   }, [])
 
   return (
-    <section id="services" ref={sectionRef} className="py-20 bg-white overflow-hidden relative">
-      {/* subtle red tint pattern background */}
-      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle,_#ef4444_1px,_transparent_1px)] [background-size:24px_24px]" />
+    <section
+      id="services"
+      ref={sectionRef}
+      className="py-24 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden"
+    >
+      {/* Animated red pattern background */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0 animate-pulse"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ff0000' fillOpacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+      </div>
 
       <div className="container mx-auto px-6 lg:px-12 xl:px-16 relative z-10">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="flex gap-1">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="w-2 h-2 bg-red-600 rotate-45"></div>
-              ))}
-            </div>
-            <span className="text-gray-800 font-medium tracking-wider">Our Service</span>
-            <div className="flex gap-1">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="w-2 h-2 bg-red-600 rotate-45"></div>
-              ))}
-            </div>
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-6 py-3 bg-red-600/20 border border-red-600/30 text-red-500 rounded-full text-sm font-semibold backdrop-blur-sm animate-pulse mb-6">
+            <Star className="w-4 h-4 mr-2 animate-spin" />
+            Our Premium Services
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-black mb-6">
-            We&#39;re Offering the Best
-            <span className="block text-red-600">Services to You</span>
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            Keeping You Moving With
+            <span className="block text-red-600">Expert Tyre Solutions</span>
           </h2>
+
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            From emergency tyre repair to professional wheel balancing — we handle it all, anytime, anywhere.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Service Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {featuredServices.map((service, index) => {
             const isVisible = visibleCards.includes(index)
-
             return (
               <Card
                 key={index}
                 data-index={index}
-                className={`group overflow-hidden hover:shadow-2xl transition-all duration-700 border border-red-200 bg-red-600 text-white ${
+                className={`group bg-gradient-to-b from-gray-900 via-gray-800 to-black border border-red-600/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-red-600/30 transition-all duration-700 transform ${
                   isVisible ? "animate-slide-up opacity-100" : "opacity-0 translate-y-8"
                 }`}
                 style={{
                   animationDelay: `${service.delay}ms`,
-                  transform: isVisible ? "translateY(0)" : "translateY(32px)",
                 }}
               >
                 <div className="relative overflow-hidden">
@@ -124,24 +131,22 @@ export function ServicesSection() {
                     alt={service.title}
                     className="w-full h-64 object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
                 </div>
 
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-yellow-200 transition-colors duration-300">
+                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-red-500 transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-white/90 leading-relaxed mb-6">{service.description}</p>
+                  <p className="text-gray-300 leading-relaxed mb-6">{service.description}</p>
 
                   <Button
                     asChild
-                    className="bg-white text-red-700 hover:bg-black hover:text-white font-semibold px-6 py-3 rounded-md relative overflow-hidden group/btn transition-all duration-300"
+                    className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-red-600/40 transition-all duration-300 hover:scale-105"
                   >
-                    <a href="tel:447886051544">
-                      <span className="relative z-10 flex items-center gap-2">
-                        Book Now
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                      </span>
+                    <a href="tel:+447476306677" className="flex items-center gap-2">
+                      Book Now
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </a>
                   </Button>
                 </CardContent>

@@ -90,7 +90,7 @@ export function Header() {
                 isScrolled ? "scale-90" : "scale-100"
               }`}
             >
-              <Image src="/logo.png" alt="Logo" width={120} height={120} />
+              <Image src="/logo.png" alt="Logo" height={120} width={120} />
             </div>
 
             {/* Desktop Menu */}

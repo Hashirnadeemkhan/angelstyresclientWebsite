@@ -20,21 +20,21 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "David Williams",
     text: "My car had a flat tyre near Cleckheaton, and these guys arrived within 15 minutes! Quick puncture repair and super friendly service. Highly recommended for emergencies.",
-    image: "/customer1.jpg",
+    image: "/customer4.jpg",
     rating: 5,
   },
   {
     id: 2,
     name: "Emma Roberts",
     text: "Excellent experience! I got my car tyres replaced at home, and the technician even balanced all wheels properly. Fast, affordable, and professional service!",
-    image: "/customer2.jpg",
+    image: "/customer5.jpg",
     rating: 5,
   },
   {
     id: 3,
     name: "James Turner",
     text: "Had a TPMS sensor issue — they supplied, programmed, and fitted it perfectly. The technician explained everything clearly. Couldn’t ask for better service.",
-    image: "/customer3.jpg",
+    image: "/customer6.jpg",
     rating: 5,
   },
 ];
@@ -54,7 +54,6 @@ const TestimonialCarousel: React.FC = () => {
     setCurrentIndex(index);
   };
 
-  // Auto slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(nextTestimonial, 5000);
     return () => clearInterval(interval);
@@ -65,20 +64,26 @@ const TestimonialCarousel: React.FC = () => {
       <Star
         key={i}
         className={`w-6 h-6 ${
-          i < rating ? "fill-red-700 text-red-700" : "fill-gray-300 text-gray-300"
+          i < rating ? "fill-red-600 text-red-600" : "fill-gray-300 text-gray-300"
         }`}
       />
     ));
   };
 
   return (
-    <section id="testimonial" className="relative min-h-screen bg-black py-20 overflow-hidden">
+    <section
+      id="testimonial"
+      className="relative min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100 py-20 overflow-hidden"
+    >
       <div className="container mx-auto max-w-6xl px-4">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-white">
-            What Our Customers Are Saying
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            What Our <span className="text-red-700">Customers</span> Say
           </h2>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">
+            Real feedback from real drivers who trust our fast, mobile tyre services every day.
+          </p>
         </div>
 
         {/* Testimonial Card */}
@@ -91,8 +96,8 @@ const TestimonialCarousel: React.FC = () => {
               exit={{ opacity: 0, scale: 0.9, x: -100 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="relative p-8 md:p-12 border-2 border-red-700 bg-white shadow-lg">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
+              <Card className="relative p-8 md:p-12 border border-gray-200 bg-white shadow-xl rounded-3xl">
+                <div className="grid md:grid-cols-2 gap-10 items-center">
                   {/* Left: Image */}
                   <div className="relative w-80 h-80 mx-auto">
                     <Image
@@ -100,9 +105,9 @@ const TestimonialCarousel: React.FC = () => {
                       alt={testimonials[currentIndex].name}
                       width={320}
                       height={320}
-                      className="w-full h-full object-cover rounded-2xl"
+                      className="w-full h-full object-cover rounded-2xl shadow-md hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-700 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
                       <Quote className="w-8 h-8 text-white fill-current" />
                     </div>
                   </div>
@@ -110,7 +115,7 @@ const TestimonialCarousel: React.FC = () => {
                   {/* Right: Text */}
                   <div className="space-y-6">
                     <div className="flex gap-1">{renderStars(testimonials[currentIndex].rating)}</div>
-                    <blockquote className="text-xl md:text-2xl leading-relaxed text-black font-medium">
+                    <blockquote className="text-xl md:text-2xl leading-relaxed text-gray-800 font-medium italic">
                       &quot;{testimonials[currentIndex].text}&quot;
                     </blockquote>
                     <div className="pt-4">
@@ -130,7 +135,7 @@ const TestimonialCarousel: React.FC = () => {
               variant="outline"
               size="icon"
               onClick={prevTestimonial}
-              className="w-12 h-12 rounded-full border-red-700 hover:bg-red-700 hover:text-white transition-all duration-300"
+              className="w-12 h-12 rounded-full border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
@@ -138,7 +143,7 @@ const TestimonialCarousel: React.FC = () => {
               variant="outline"
               size="icon"
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full border-red-700 hover:bg-red-700 hover:text-white transition-all duration-300"
+              className="w-12 h-12 rounded-full border-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md"
             >
               <ChevronRight className="w-6 h-6" />
             </Button>
@@ -146,9 +151,9 @@ const TestimonialCarousel: React.FC = () => {
         </div>
 
         {/* Thumbnails Row */}
-        <div className="relative mt-8 flex justify-center">
+        <div className="relative mt-10 flex justify-center">
           <div className="relative">
-            <div className="bg-red-700 px-8 py-4 rounded-r-full flex items-center gap-4 shadow-lg">
+            <div className="bg-red-600 px-8 py-4 rounded-full flex items-center gap-4 shadow-lg">
               {testimonials.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
@@ -169,9 +174,6 @@ const TestimonialCarousel: React.FC = () => {
                 </button>
               ))}
             </div>
-            {/* Red Tail Effect */}
-            <div className="absolute right-0 top-0 h-full w-8 transform skew-x-12 translate-x-4"></div>
-            <div className="absolute -right-3 top-0 h-full w-8 bg-red-700 transform skew-x-12 translate-x-6"></div>
           </div>
         </div>
 
@@ -184,7 +186,7 @@ const TestimonialCarousel: React.FC = () => {
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-red-700 scale-125"
-                  : "bg-gray-300 hover:bg-red-700/50"
+                  : "bg-gray-400 hover:bg-red-600/60"
               }`}
             />
           ))}

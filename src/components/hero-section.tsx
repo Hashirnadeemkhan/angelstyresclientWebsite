@@ -49,7 +49,7 @@ export function HeroSection() {
                   Tyre Repair & Replacement
                 </span>
                 <span className="block text-white text-2xl sm:text-3xl lg:text-4xl font-normal mt-2 animate-fade-in-up animation-delay-400">
-                  Angles Tyres 
+                  Angels Tyres 
                 </span>
               </h1>
 

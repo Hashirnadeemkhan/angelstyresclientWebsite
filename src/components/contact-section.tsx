@@ -52,91 +52,115 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="w-full max-w-6xl mx-auto my-12 p-6 bg-black rounded-xl shadow-lg grid md:grid-cols-2 gap-8">
-      <div className="rounded-lg overflow-hidden">
+    <section
+      id="contact"
+      className="w-full max-w-6xl mx-auto my-20 p-8 bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 gap-10 border border-gray-100"
+    >
+      {/* Left Image */}
+      <div className="rounded-2xl overflow-hidden shadow-md">
         <Image
           height={400}
           width={600}
           src="/contact.webp"
-          alt="Contact"
-          className="w-full h-full object-cover"
+          alt="Contact our mobile tyre experts"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
         />
       </div>
 
+      {/* Right Form */}
       <div>
-        <h2 className="text-3xl font-bold mb-6 text-center text-red-600">Feel Free to Write Us</h2>
+        <h2 className="text-4xl font-bold mb-6 text-center text-black">
+          Feel Free to <span className="text-red-600">Write Us</span>
+        </h2>
 
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          <input
-            type="text"
-            placeholder="Your Name"
-            {...form.register("name")}
-            className="w-full p-3 border border-red-600 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
-          {form.formState.errors.name && (
-            <p className="text-red-500 text-sm">{form.formState.errors.name.message}</p>
-          )}
+          {/* Name */}
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Your Name"
+              {...form.register("name")}
+              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+            />
+            {form.formState.errors.name && (
+              <p className="text-red-600 text-sm mt-1">{form.formState.errors.name.message}</p>
+            )}
+          </div>
 
-          <input
-            type="email"
-            placeholder="Email Address"
-            {...form.register("email")}
-            className="w-full p-3 border border-red-600 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
-          {form.formState.errors.email && (
-            <p className="text-red-500 text-sm">{form.formState.errors.email.message}</p>
-          )}
+          {/* Email */}
+          <div className="col-span-1">
+            <input
+              type="email"
+              placeholder="Email Address"
+              {...form.register("email")}
+              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+            />
+            {form.formState.errors.email && (
+              <p className="text-red-600 text-sm mt-1">{form.formState.errors.email.message}</p>
+            )}
+          </div>
 
-          <input
-            type="text"
-            placeholder="Phone"
-            {...form.register("phone")}
-            className="w-full p-3 border border-red-600 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
-          {form.formState.errors.phone && (
-            <p className="text-red-500 text-sm">{form.formState.errors.phone.message}</p>
-          )}
+          {/* Phone */}
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Phone"
+              {...form.register("phone")}
+              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+            />
+            {form.formState.errors.phone && (
+              <p className="text-red-600 text-sm mt-1">{form.formState.errors.phone.message}</p>
+            )}
+          </div>
 
-          <input
-            type="text"
-            placeholder="Subject"
-            {...form.register("subject")}
-            className="w-full p-3 border border-red-600 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-          />
-          {form.formState.errors.subject && (
-            <p className="text-red-500 text-sm">{form.formState.errors.subject.message}</p>
-          )}
+          {/* Subject */}
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Subject"
+              {...form.register("subject")}
+              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+            />
+            {form.formState.errors.subject && (
+              <p className="text-red-600 text-sm mt-1">{form.formState.errors.subject.message}</p>
+            )}
+          </div>
 
-          <textarea
-            placeholder="Write a Message"
-            {...form.register("message")}
-            rows={5}
-            className="w-full md:col-span-2 p-3 border border-red-600 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-          ></textarea>
-          {form.formState.errors.message && (
-            <p className="text-red-500 text-sm md:col-span-2">
-              {form.formState.errors.message.message}
-            </p>
-          )}
+          {/* Message */}
+          <div className="md:col-span-2">
+            <textarea
+              placeholder="Write a Message"
+              {...form.register("message")}
+              rows={5}
+              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+            ></textarea>
+            {form.formState.errors.message && (
+              <p className="text-red-600 text-sm mt-1">
+                {form.formState.errors.message.message}
+              </p>
+            )}
+          </div>
 
+          {/* Status Message */}
           {status === "success" && (
-            <p className="text-green-600 font-medium md:col-span-2">
+            <p className="text-green-600 font-medium md:col-span-2 text-center">
               ✅ Message sent successfully!
             </p>
           )}
           {status === "error" && (
-            <p className="text-red-500 font-medium md:col-span-2">
+            <p className="text-red-600 font-medium md:col-span-2 text-center">
               ❌ Failed to send message. Please try again.
             </p>
           )}
 
+          {/* Button */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full md:col-span-2 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition disabled:opacity-50"
+            className="w-full md:col-span-2 bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 disabled:opacity-50"
           >
             {isSubmitting ? "Sending..." : "Send A Message"}
           </button>

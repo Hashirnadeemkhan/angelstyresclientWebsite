@@ -176,7 +176,7 @@ export function Footer() {
         <div className="container mx-auto px-6 lg:px-12 xl:px-16 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 gap-4">
             <div className="flex flex-col md:flex-row items-center gap-3">
-              <span>© 2025 Angles Tyres</span>
+              <span>© 2025 Angels Tyres</span>
               <span className="hidden md:inline">•</span>
               <a href="#" className="hover:text-red-700 transition-colors">
                 Privacy Policy

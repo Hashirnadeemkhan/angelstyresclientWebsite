@@ -82,7 +82,7 @@ export default function WhyChooseUsSection() {
               <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
                 Why You Should Choose{" "}
                 <span className="text-red-500 relative">
-                  Angles Tyres Services
+                  Angels Tyres Services
                   <div className="absolute -bottom-2 left-0 w-full h-1 bg-red-600 rounded-full animate-pulse"></div>
                 </span>
               </h2>

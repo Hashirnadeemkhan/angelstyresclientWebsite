@@ -76,7 +76,7 @@ export function HeroSection() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-lg px-10 py-7 rounded-xl bg-transparent border-2 border-red-600/50 text-red-600 hover:bg-red-600/10 hover:border-red-600 transition-all duration-300"
+                  className="text-lg px-10 py-7 rounded-xl bg-transparent border-2 hover:text-white border-red-600/50 text-red-600 hover:bg-red-600/10 hover:border-red-600 transition-all duration-300"
                 >
                   View All Services
                 </Button>

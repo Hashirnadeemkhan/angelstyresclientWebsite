@@ -49,6 +49,13 @@ const featuredServices = [
     image: "/tpms-sensor.png",
     delay: 500,
   },
+  {
+    title: "Fleet Services",
+    description:
+      "At Angles Tyres Ltd, we provide free fleet accounts with no hidden fees. We even offer complimentary tyre breakdown support across United Kingdom and nearby areas. Contact us for emergency tyre assistance anytime.",
+    image: "/fleet-services.png",
+    delay: 600,
+  },
 ]
 
 export function ServicesSection() {

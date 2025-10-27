@@ -1,52 +1,56 @@
-"use client"
+"use client";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { UploadButton } from "@/lib/uploadthing";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
-import { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Button } from "@/components/ui/button"
-import { UploadButton } from "@/lib/uploadthing"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import dynamic from "next/dynamic"
-
-// ✅ Load ReactQuill only on client
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false })
-import "react-quill/dist/quill.snow.css"
+// Load ReactQuill only on client
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
 
 const schema = z.object({
   title: z.string().min(3, "Title is required"),
-})
+});
+
+// Form data type
+interface FormData {
+  title: string;
+}
 
 export default function EditBlogPage({ params }: { params: { slug: string } }) {
-  const router = useRouter()
-  const [imageUrl, setImageUrl] = useState<string | null>(null)
-  const [content, setContent] = useState("")
-  const [loading, setLoading] = useState(true)
-  const [uploading, setUploading] = useState(false)
+  const router = useRouter();
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
 
-  const { register, handleSubmit, setValue } = useForm({
+  const { register, handleSubmit, setValue } = useForm<FormData>({
     resolver: zodResolver(schema),
-  })
+  });
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`/api/blog/${params.slug}`)
-        const data = await res.json()
-        setValue("title", data.title)
-        setContent(data.content)
-        setImageUrl(data.imageUrl)
+        const res = await fetch(`/api/blog/${params.slug}`);
+        const data = await res.json();
+        setValue("title", data.title);
+        setContent(data.content);
+        setImageUrl(data.imageUrl);
       } catch (error) {
-        console.error("Failed to fetch blog:", error)
+        console.error("Failed to fetch blog:", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchBlog()
-  }, [params.slug, setValue])
+    };
+    fetchBlog();
+  }, [params.slug, setValue]);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     try {
       const res = await fetch(`/api/blog/${params.slug}`, {
         method: "PUT",
@@ -56,20 +60,20 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
           content,
           imageUrl,
         }),
-      })
+      });
 
       if (res.ok) {
-        alert("✅ Blog updated successfully!")
-        router.push("/admin/dashboard")
+        alert("✅ Blog updated successfully!");
+        router.push("/admin/dashboard");
       } else {
-        alert("❌ Failed to update blog")
+        alert("❌ Failed to update blog");
       }
     } catch (error) {
-      console.error("Error updating blog:", error)
+      console.error("Error updating blog:", error);
     }
-  }
+  };
 
-  if (loading) return <p className="text-center mt-16">Loading...</p>
+  if (loading) return <p className="text-center mt-16">Loading...</p>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-16">
@@ -82,7 +86,7 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
           className="w-full border p-3 rounded-md"
         />
 
-        {/* ✅ Quill Editor for content */}
+        {/* Quill Editor for content */}
         <ReactQuill
           theme="snow"
           value={content}
@@ -100,13 +104,17 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
           }}
         />
 
-        {/* ✅ Image Upload */}
+        {/* Image Upload */}
         <UploadButton
           endpoint="blogImage"
           onUploadBegin={() => setUploading(true)}
           onClientUploadComplete={(res: { url: string }[]) => {
-            setImageUrl(res[0].url)
-            setUploading(false)
+            setImageUrl(res[0].url);
+            setUploading(false);
+          }}
+          onUploadError={(error: Error) => {
+            setUploading(false);
+            alert(`Upload error: ${error.message}`);
           }}
         />
 
@@ -129,5 +137,5 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
         </Button>
       </form>
     </div>
-  )
+  );
 }

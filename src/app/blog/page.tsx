@@ -11,7 +11,16 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
 export default function BlogPage() {
-  const [blogs, setBlogs] = useState<any[]>([])
+  interface Blog {
+    id: string
+    slug: string
+    title: string
+    content: string
+    imageUrl?: string
+    // add other fields if present in your API
+  }
+
+  const [blogs, setBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

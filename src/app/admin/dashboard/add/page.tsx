@@ -1,40 +1,50 @@
-"use client"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { UploadButton } from "@/lib/uploadthing"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import dynamic from "next/dynamic"
+"use client";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UploadButton } from "@/lib/uploadthing";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
-// ✅ Load Quill only on client
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false })
-import "react-quill/dist/quill.snow.css"
+// Load Quill only on client
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
 
-// ✅ Zod validation schema
+// Zod validation schema
 const schema = z.object({
   title: z.string().min(3, "Title is required"),
-})
+});
+
+// Form data type
+interface FormData {
+  title: string;
+}
 
 export default function AddBlogPage() {
-  const [imageUrl, setImageUrl] = useState<string | null>(null)
-  const [uploading, setUploading] = useState(false)
-  const [content, setContent] = useState("")
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
-  })
+  });
 
-  const onSubmit = async (data: any) => {
-    if (uploading) return alert("⏳ Please wait for image upload.")
-    if (content.trim().length < 10) return alert("✍️ Please add more content.")
+  const onSubmit = async (data: FormData) => {
+    if (uploading) return alert("⏳ Please wait for image upload.");
+    if (content.trim().length < 10) return alert("✍️ Please add more content.");
 
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await fetch("/api/blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -43,25 +53,25 @@ export default function AddBlogPage() {
           content,
           imageUrl,
         }),
-      })
+      });
 
       if (!res.ok) {
-        const text = await res.text()
-        throw new Error(text)
+        const text = await res.text();
+        throw new Error(text);
       }
 
-      alert("✅ Blog published successfully!")
-      reset()
-      setContent("")
-      setImageUrl(null)
-      router.push("/admin/dashboard")
-    } catch (err: any) {
-      console.error("Error publishing blog:", err)
-      alert("❌ Failed to publish blog. Check console.")
+      alert("✅ Blog published successfully!");
+      reset();
+      setContent("");
+      setImageUrl(null);
+      router.push("/admin/dashboard");
+    } catch (err) {
+      console.error("Error publishing blog:", err);
+      alert("❌ Failed to publish blog. Check console.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-16">
@@ -79,12 +89,12 @@ export default function AddBlogPage() {
           />
           {errors.title && (
             <p className="text-red-500 text-sm mt-1">
-              {errors.title.message as string}
+              {errors.title.message}
             </p>
           )}
         </div>
 
-        {/* ✅ Rich Text Editor */}
+        {/* Rich Text Editor */}
         <div>
           <ReactQuill
             theme="snow"
@@ -113,12 +123,12 @@ export default function AddBlogPage() {
             endpoint="blogImage"
             onUploadBegin={() => setUploading(true)}
             onClientUploadComplete={(res: { url: string }[]) => {
-              setImageUrl(res[0].url)
-              setUploading(false)
+              setImageUrl(res[0].url);
+              setUploading(false);
             }}
             onUploadError={(error: Error) => {
-              setUploading(false)
-              alert(`Upload error: ${error.message}`)
+              setUploading(false);
+              alert(`Upload error: ${error.message}`);
             }}
           />
           {imageUrl && (
@@ -141,5 +151,5 @@ export default function AddBlogPage() {
         </Button>
       </form>
     </div>
-  )
+  );
 }

@@ -95,21 +95,31 @@ export function Header() {
 
             {/* Desktop Menu */}
             <nav className="hidden lg:flex items-center space-x-8">
-              {["home", "about", "services", "testimonial", "choose-us", "contact"].map(
-                (item) => (
-                  <Link
-                    key={item}
-                    href={`#${item}`}
-                    className={`font-medium transition-colors duration-300 ${
-                      isScrolled
-                        ? "text-gray-800 hover:text-red-600"
-                        : "text-gray-800 hover:text-red-600"
-                    }`}
-                  >
-                    {item.charAt(0).toUpperCase() + item.slice(1).replace("-", " ")}
-                  </Link>
-                )
-              )}
+            {["home", "about", "services", "testimonial", "blog", "choose-us", "contact"].map(
+  (item) => {
+    const href =
+      item === "home"
+        ? "#home"
+        : item === "blog"
+        ? "/blog"
+        : `#${item}`
+
+    return (
+      <Link
+        key={item}
+        href={href}
+        className={`font-medium transition-colors duration-300 ${
+          isScrolled
+            ? "text-gray-800 hover:text-red-600"
+            : "text-gray-800 hover:text-red-600"
+        }`}
+      >
+        {item.charAt(0).toUpperCase() + item.slice(1).replace("-", " ")}
+      </Link>
+    )
+  }
+)}
+
             </nav>
 
             {/* Call Options (Desktop) */}

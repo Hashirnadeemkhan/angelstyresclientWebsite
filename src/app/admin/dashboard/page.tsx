@@ -4,9 +4,17 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
+interface Blog {
+  id: string;
+  slug: string;
+  title: string;
+  imageUrl?: string;
+  createdAt: string;
+}
+
 export default function AdminDashboard() {
-  const [blogs, setBlogs] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {

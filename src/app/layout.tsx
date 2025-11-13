@@ -1,6 +1,7 @@
 // app/layout.tsx   (or app/page.tsx if you prefer to keep it in the page file)
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   // ──────────────────────────────────────────────────────────────
@@ -112,6 +113,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+     <head>
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-08H8W1VJZD"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-08H8W1VJZD');
+          `}
+        </Script>
+      </head>
       <body>{children}</body>
     </html>
   );

@@ -1,167 +1,159 @@
-"use client"
+import {
+  BatteryCharging,
+  Car,
+  ClipboardCheck,
+  Cog,
+  Disc3,
+  Gauge,
+  Thermometer,
+  Wrench,
+} from "lucide-react";
+import { Reveal } from "@/components/reveal";
+import { site } from "@/lib/site";
 
-import { useEffect, useRef, useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { ArrowRight, Star } from "lucide-react"
+type Service = {
+  icon: typeof Wrench;
+  title: string;
+  text: string;
+  wide?: boolean;
+  tone?: "gold" | "blue" | "dark";
+};
 
-const featuredServices = [
+const services: Service[] = [
   {
-    title: "Emergency Tyre Repair",
-    description:
-      "Stuck with a flat tyre on the roadside? Our 24/7 emergency tyre repair service ensures fast response and professional on-site repairs — getting you back on the road safely and quickly.",
-    image: "/emergency-tyre.png",
-    delay: 0,
+    icon: Wrench,
+    title: "Car Servicing",
+    text: "Interim & full services — oil, filters and a full multi-point inspection.",
+    tone: "gold",
   },
   {
-    title: "Tyre Replacement",
-    description:
-      "We offer quick and affordable tyre replacement for all vehicle types. Whether your tyre is damaged or worn out, our experts will replace it with high-quality tyres that ensure safety and performance.",
-    image: "/tyre-replacement.png",
-    delay: 100,
+    icon: Gauge,
+    title: "Diagnostics",
+    text: "Engine management & fault-code diagnostics with professional tools.",
   },
   {
-    title: "Puncture Repair",
-    description:
-      "Got a puncture? Our skilled technicians use professional tools to repair punctures on-site, ensuring a perfect seal and extended tyre life — saving you time and money.",
-    image: "/puncture-repair.jpg",
-    delay: 200,
+    icon: Disc3,
+    title: "Brakes & Discs",
+    text: "Pads, discs and calipers replaced safely at your location.",
   },
   {
-    title: "Car Tyre Replacement",
-    description:
-      "We specialize in car tyre replacements for all makes and models. From premium to budget tyres, we provide the best options to match your driving style and vehicle needs.",
-    image: "/car-replace.png",
-    delay: 300,
+    icon: Cog,
+    title: "Clutch & Gearbox",
+    text: "Clutch replacement and gearbox repairs on most makes & models.",
   },
   {
-    title: "Wheel Balancing",
-    description:
-      "Ensure a smooth, vibration-free drive with our expert wheel balancing service. Proper balancing improves tyre lifespan, fuel efficiency, and overall driving comfort.",
-    image: "/wheel-balancing.png",
-    delay: 400,
+    icon: BatteryCharging,
+    title: "Battery & Electrics",
+    text: "Battery, alternator and starter-motor testing & replacement.",
   },
   {
-    title: "TPMS Sensor Supplied, Programmed & Fitted",
-    description:
-      "We supply, program, and fit new TPMS (Tyre Pressure Monitoring System) sensors for all vehicles. Maintain accurate tyre pressure readings for better safety and fuel efficiency.",
-    image: "/tpms-sensor.png",
-    delay: 500,
+    icon: Thermometer,
+    title: "Cooling & Timing",
+    text: "Water pumps, thermostats, cambelts and timing chains.",
   },
   {
-    title: "Fleet Services",
-    description:
-      "At Angles Tyres Ltd, we provide free fleet accounts with no hidden fees. We even offer complimentary tyre breakdown support across United Kingdom and nearby areas. Contact us for emergency tyre assistance anytime.",
-    image: "/fleet-services.png",
-    delay: 600,
+    icon: ClipboardCheck,
+    title: "Pre-MOT Repairs",
+    text: "Fix advisories and failures so your car sails through its MOT first time.",
+    wide: true,
+    tone: "blue",
   },
-]
+  {
+    icon: Car,
+    title: "General Repairs",
+    text: "Suspension, exhausts, sensors and everyday mechanical fixes.",
+    wide: true,
+  },
+];
 
 export function ServicesSection() {
-  const [visibleCards, setVisibleCards] = useState<number[]>([])
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const cardIndex = Number.parseInt(entry.target.getAttribute("data-index") || "0")
-            setVisibleCards((prev) => [...prev, cardIndex])
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
-
-    const cards = sectionRef.current?.querySelectorAll("[data-index]")
-    cards?.forEach((card) => observer.observe(card))
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section
       id="services"
-      ref={sectionRef}
-      className="py-24 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden"
+      className="relative overflow-hidden bg-brand-ink py-20 text-white sm:py-28"
     >
-      {/* Animated red pattern background */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0 animate-pulse"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ff0000' fillOpacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+      <div className="absolute inset-0 bg-dots opacity-50" />
+      <div className="absolute -right-40 top-0 h-[400px] w-[400px] rounded-full bg-brand-blue/20 blur-[120px]" />
 
-      <div className="container mx-auto px-6 lg:px-12 xl:px-16 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-6 py-3 bg-red-600/20 border border-red-600/30 text-red-500 rounded-full text-sm font-semibold backdrop-blur-sm animate-pulse mb-6">
-            <Star className="w-4 h-4 mr-2 animate-spin" />
-            Our Premium Services
+      <div className="container-pad relative">
+        {/* header */}
+        <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow text-brand-gold">What We Do</p>
+            <h2 className="display mt-5 text-4xl sm:text-5xl lg:text-6xl">
+              Full-Service
+              <br />
+              <span className="text-gold">Mobile Repairs</span>
+            </h2>
           </div>
-
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-            Keeping You Moving With
-            <span className="block text-red-600">Expert Tyre Solutions</span>
-          </h2>
-
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            From emergency tyre repair to professional wheel balancing — we handle it all, anytime, anywhere.
+          <p className="max-w-sm text-brand-steel">
+            Whatever your car needs, we bring the workshop to your driveway —
+            every job to dealer standard.{" "}
+            <a
+              href={site.phoneHref}
+              className="font-bold text-brand-gold underline-offset-4 hover:underline"
+            >
+              Call us →
+            </a>
           </p>
-        </div>
+        </Reveal>
 
-        {/* Service Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {featuredServices.map((service, index) => {
-            const isVisible = visibleCards.includes(index)
+        {/* bento */}
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          {services.map((s, i) => {
+            const isGold = s.tone === "gold";
+            const isBlue = s.tone === "blue";
             return (
-              <Card
-                key={index}
-                data-index={index}
-                className={`group bg-gradient-to-b from-gray-900 via-gray-800 to-black border border-red-600/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-red-600/30 transition-all duration-700 transform ${
-                  isVisible ? "animate-slide-up opacity-100" : "opacity-0 translate-y-8"
-                }`}
-                style={{
-                  animationDelay: `${service.delay}ms`,
-                }}
+              <Reveal
+                key={s.title}
+                delay={(i % 3) * 0.06}
+                className={s.wide ? "lg:col-span-3" : "lg:col-span-2"}
               >
-                <div className="relative overflow-hidden">
-                  <Image
-                    height={400}
-                    width={600}
-                    src={service.image || "/placeholder.svg"}
-                    alt={service.title}
-                    className="w-full h-64 object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
-                </div>
-
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-red-500 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed mb-6">{service.description}</p>
-
-                  <Button
-                    asChild
-                    className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-red-600/40 transition-all duration-300 hover:scale-105"
+                <div
+                  className={`group relative flex h-full flex-col overflow-hidden border-2 p-6 transition-all duration-300 hover:-translate-y-1 ${
+                    isGold
+                      ? "border-brand-gold bg-brand-gold text-brand-ink"
+                      : isBlue
+                        ? "border-brand-blue/60 bg-brand-blue/10 hover:border-brand-blue"
+                        : "border-white/12 bg-white/[0.03] hover:border-brand-gold/60"
+                  }`}
+                >
+                  <span
+                    className={`absolute right-4 top-3 font-display text-3xl ${
+                      isGold ? "text-brand-ink/15" : "text-white/10"
+                    }`}
                   >
-                    <a href="tel:+447476306677" className="flex items-center gap-2">
-                      Book Now
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            )
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className={`grid h-14 w-14 place-items-center rounded-full ${
+                      isGold
+                        ? "bg-brand-ink text-brand-gold"
+                        : "bg-white/5 text-brand-gold ring-1 ring-white/10"
+                    }`}
+                  >
+                    <s.icon className="h-7 w-7" />
+                  </span>
+                  <h3
+                    className={`display mt-5 text-xl ${
+                      isGold ? "text-brand-ink" : "text-white"
+                    }`}
+                  >
+                    {s.title}
+                  </h3>
+                  <p
+                    className={`mt-2 text-sm leading-relaxed ${
+                      isGold ? "text-brand-ink/70" : "text-brand-steel"
+                    }`}
+                  >
+                    {s.text}
+                  </p>
+                </div>
+              </Reveal>
+            );
           })}
         </div>
       </div>
     </section>
-  )
+  );
 }

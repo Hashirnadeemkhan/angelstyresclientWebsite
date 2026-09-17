@@ -1,96 +1,110 @@
-// app/layout.tsx
 import type { Metadata } from "next";
+import { Inter, Anton } from "next/font/google";
 import "./globals.css";
-import Script from 'next/script';
+import { site } from "@/lib/site";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  // ──────────────────────────────────────────────────────────────
-  // 1. BASIC SEO
-  // ──────────────────────────────────────────────────────────────
-  title: "24/7 Mobile Tyre Fitting & Repair in Cleckheaton | Angels Tyres",
+  metadataBase: new URL(site.url),
+  title: {
+    default:
+      "West Yorkshire Mobile Mechanic | Mobile Car Repairs & Servicing in Huddersfield",
+    template: "%s | West Yorkshire Mobile Mechanic",
+  },
   description:
-    "Need fast mobile tyre fitting or repair in Cleckheaton? Angels Tyres offers 24/7 emergency tyre services, puncture repairs, and replacements at your location. Quick, reliable, and affordable — keeping you safely on the road day and night.",
-
-  // ──────────────────────────────────────────────────────────────
-  // 2. KEYWORDS
-  // ──────────────────────────────────────────────────────────────
+    "Fully mobile mechanic covering Huddersfield & West Yorkshire. Car servicing, diagnostics, brakes, clutches, batteries and pre-MOT repairs at your home or work. Fast, honest and fairly priced. Call +44 7467 478567.",
   keywords: [
-    "mobile tyre fitting", "24/7 tyre repair", "emergency tyre fitting Cleckheaton",
-    "puncture repair near me", "mobile tyre replacement", "Cleckheaton tyre services",
-    "puncture repair", "tyre replacement", "wheel balancing", "TPMS sensor fitting",
-    "emergency tyre repair", "mobile tyre services Cleckheaton",
-    "about Angels Tyres", "24/7 tyre call out", "emergency tyre specialist",
-    "local tyre repair company", "Angels Tyres Cleckheaton", "Angels Tyres"
+    "mobile mechanic Huddersfield",
+    "mobile mechanic West Yorkshire",
+    "car servicing Huddersfield",
+    "mobile car repairs",
+    "car diagnostics Huddersfield",
+    "brake repair Huddersfield",
+    "clutch replacement West Yorkshire",
+    "mobile car battery replacement",
+    "pre-MOT repairs Huddersfield",
+    "mechanic that comes to you",
   ],
-
-  // ──────────────────────────────────────────────────────────────
-  // 3. AUTHOR / PUBLISHER
-  // ──────────────────────────────────────────────────────────────
-  authors: [{ name: "Angels Tyres" }],
-  creator: "Angels Tyres",
-  publisher: "Angels Tyres",
-
-  // ──────────────────────────────────────────────────────────────
-  // 4. ROBOTS
-  // ──────────────────────────────────────────────────────────────
+  authors: [{ name: site.name }],
+  creator: site.name,
+  publisher: site.name,
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-
-  // ──────────────────────────────────────────────────────────────
-  // 5. GOOGLE SITE VERIFICATION (Client ne diya)
-  // ──────────────────────────────────────────────────────────────
-  verification: {
-    google: "6LIjh57Wml6U7pYj7DQPm9HeEqoM99AQ30dxt2e2CRw",
-  },
-
-  // ──────────────────────────────────────────────────────────────
-  // 6. OPEN GRAPH
-  // ──────────────────────────────────────────────────────────────
   openGraph: {
-    title: "24/7 Mobile Tyre Fitting & Repair in Cleckheaton | Angels Tyres",
+    title:
+      "West Yorkshire Mobile Mechanic | We Come To You Across Huddersfield",
     description:
-      "Explore our range of tyre services — from emergency tyre repair and wheel balancing to TPMS sensor fitting. Angels Tyres delivers expert, on-site tyre care across Cleckheaton and nearby areas with fast response and professional service.",
-    url: "https://www.angelstyres.co.uk/",
-    siteName: "Angels Tyres",
-    images: [
-      {
-        url: "/logo.png",
-        width: 800,
-        height: 800,
-        alt: "Angels Tyres Logo",
-      },
-    ],
+      "Mobile car servicing, diagnostics and repairs at your home or workplace across Huddersfield and West Yorkshire. Book today.",
+    url: site.url,
+    siteName: site.name,
+    images: [{ url: "/logo.jpeg", width: 1536, height: 1024, alt: site.name }],
     locale: "en_GB",
     type: "website",
   },
-
-  // ──────────────────────────────────────────────────────────────
-  // 7. TWITTER CARD
-  // ──────────────────────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
-    title: "24/7 Mobile Tyre Fitting & Repair in Cleckheaton | Angels Tyres",
+    title: "West Yorkshire Mobile Mechanic",
     description:
-      "Learn about Angels Tyres, your trusted local mobile tyre fitting and repair specialists in Cleckheaton. Available 24/7 for emergency call-outs, puncture repairs, full replacements and more.",
-    images: ["/logo.png"],
-    creator: "@angelstyres",
+      "Mobile car repairs & servicing across Huddersfield and West Yorkshire — we come to you.",
+    images: ["/logo.jpeg"],
   },
+  icons: { icon: "/logo.jpeg", apple: "/logo.jpeg" },
+};
 
-  // ──────────────────────────────────────────────────────────────
-  // 8. ICONS
-  // ──────────────────────────────────────────────────────────────
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  name: site.name,
+  image: `${site.url}/logo.jpeg`,
+  "@id": site.url,
+  url: site.url,
+  telephone: site.phoneDisplay,
+  priceRange: "££",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    postalCode: site.address.postcode,
+    addressCountry: "GB",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 53.6242, longitude: -1.8195 },
+  areaServed: [
+    "Huddersfield",
+    "Halifax",
+    "Dewsbury",
+    "Brighouse",
+    "Holmfirth",
+    "West Yorkshire",
+  ],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "07:00",
+    closes: "21:00",
   },
 };
 
@@ -100,27 +114,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        {/* Google Analytics (gtag.js) - Client ne diya */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-08H8W1VJZD"
+    <html lang="en-GB" className={`${inter.variable} ${anton.variable}`}>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-08H8W1VJZD');
-            `,
-          }}
-        />
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,170 +1,180 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
+import { Clock, MapPin, Phone, Send } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { Reveal } from "@/components/reveal";
+import { site } from "@/lib/site";
 
-const contactSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email"),
-  phone: z.string().min(5, "Phone is required"),
-  subject: z.string().min(2, "Subject is required"),
-  message: z.string().min(5, "Message is required"),
-});
+export function ContactSection() {
+  const [form, setForm] = useState({ name: "", phone: "", car: "", message: "" });
 
-type ContactFormData = z.infer<typeof contactSchema>;
-
-export default function ContactSection() {
-  const [status, setStatus] = useState<"success" | "error" | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  });
-
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    setStatus(null);
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-
-      if (res.ok && result.success) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(
+      `New enquiry from ${form.name || "website"}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nPhone: ${form.phone}\nCar: ${form.car}\n\n${form.message}`
+    );
+    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   };
 
+  const inputClass =
+    "w-full border-2 border-brand-ink/15 bg-brand-paper px-4 py-3 text-sm font-medium text-brand-ink outline-none transition-colors placeholder:text-brand-ink/40 focus:border-brand-blue";
+
+  const contacts = [
+    {
+      icon: Phone,
+      k: "Call Us",
+      v: site.phoneDisplay,
+      href: site.phoneHref,
+      tone: "bg-brand-gold text-brand-ink",
+    },
+    {
+      icon: FaWhatsapp,
+      k: "WhatsApp",
+      v: "Message Us",
+      href: site.whatsappHref,
+      tone: "bg-green-500 text-white",
+      external: true,
+    },
+    {
+      icon: MapPin,
+      k: "Based In",
+      v: site.address.full,
+      href: site.mapsHref,
+      tone: "bg-brand-blue text-white",
+      external: true,
+    },
+  ];
+
   return (
-    <section
-      id="contact"
-      className="w-full max-w-6xl mx-auto my-20 p-8 bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 gap-10 border border-gray-100"
-    >
-      {/* Left Image */}
-      <div className="rounded-2xl overflow-hidden shadow-md">
-        <Image
-          height={400}
-          width={600}
-          src="/contact.webp"
-          alt="Contact our mobile tyre experts"
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-        />
-      </div>
+    <section id="contact" className="bg-brand-paper-2 py-20 sm:py-28">
+      <div className="container-pad">
+        <Reveal className="max-w-2xl">
+          <p className="eyebrow text-brand-gold-dark">Get In Touch</p>
+          <h2 className="display mt-5 text-4xl text-brand-ink sm:text-5xl lg:text-6xl">
+            Book Your <span className="text-blue">Mechanic</span>
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-brand-ink/70">
+            Call, WhatsApp or send an enquiry below and we&apos;ll get you booked
+            in — often the same day.
+          </p>
+        </Reveal>
 
-      {/* Right Form */}
-      <div>
-        <h2 className="text-4xl font-bold mb-6 text-center text-black">
-          Feel Free to <span className="text-red-600">Write Us</span>
-        </h2>
+        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <Reveal className="grid content-start gap-4">
+            {contacts.map((c) => (
+              <a
+                key={c.k}
+                href={c.href}
+                {...(c.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="group flex items-center gap-4 border-2 border-brand-ink bg-brand-paper p-5 transition-all hover:-translate-y-0.5 hover:shadow-hard"
+              >
+                <span className={`grid h-12 w-12 place-items-center ${c.tone}`}>
+                  <c.icon className="h-6 w-6" />
+                </span>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-ink/50">
+                    {c.k}
+                  </p>
+                  <p className="font-display text-lg uppercase tracking-wide text-brand-ink">
+                    {c.v}
+                  </p>
+                </div>
+              </a>
+            ))}
+            <div className="flex items-center gap-4 border-2 border-brand-ink/20 bg-brand-paper p-5">
+              <span className="grid h-12 w-12 place-items-center bg-brand-ink text-brand-gold">
+                <Clock className="h-6 w-6" />
+              </span>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-ink/50">
+                  Opening Hours
+                </p>
+                <p className="font-display text-lg uppercase tracking-wide text-brand-ink">
+                  {site.hours}
+                </p>
+              </div>
+            </div>
+          </Reveal>
 
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {/* Name */}
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Your Name"
-              {...form.register("name")}
-              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-            />
-            {form.formState.errors.name && (
-              <p className="text-red-600 text-sm mt-1">{form.formState.errors.name.message}</p>
-            )}
-          </div>
-
-          {/* Email */}
-          <div className="col-span-1">
-            <input
-              type="email"
-              placeholder="Email Address"
-              {...form.register("email")}
-              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-            />
-            {form.formState.errors.email && (
-              <p className="text-red-600 text-sm mt-1">{form.formState.errors.email.message}</p>
-            )}
-          </div>
-
-          {/* Phone */}
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Phone"
-              {...form.register("phone")}
-              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-            />
-            {form.formState.errors.phone && (
-              <p className="text-red-600 text-sm mt-1">{form.formState.errors.phone.message}</p>
-            )}
-          </div>
-
-          {/* Subject */}
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Subject"
-              {...form.register("subject")}
-              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-            />
-            {form.formState.errors.subject && (
-              <p className="text-red-600 text-sm mt-1">{form.formState.errors.subject.message}</p>
-            )}
-          </div>
-
-          {/* Message */}
-          <div className="md:col-span-2">
-            <textarea
-              placeholder="Write a Message"
-              {...form.register("message")}
-              rows={5}
-              className="w-full p-3 border border-gray-300 bg-gray-50 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-            ></textarea>
-            {form.formState.errors.message && (
-              <p className="text-red-600 text-sm mt-1">
-                {form.formState.errors.message.message}
+          <Reveal delay={0.1}>
+            <form
+              onSubmit={onSubmit}
+              className="border-2 border-brand-ink bg-brand-paper p-6 shadow-hard-gold sm:p-8"
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-brand-ink/70">
+                    Your Name
+                  </span>
+                  <input
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="John Smith"
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-brand-ink/70">
+                    Phone Number
+                  </span>
+                  <input
+                    required
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    placeholder="07…"
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+              <label className="mt-4 block">
+                <span className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-brand-ink/70">
+                  Car Make & Model
+                </span>
+                <input
+                  value={form.car}
+                  onChange={(e) => setForm({ ...form, car: e.target.value })}
+                  placeholder="e.g. VW Golf 2016"
+                  className={inputClass}
+                />
+              </label>
+              <label className="mt-4 block">
+                <span className="mb-1.5 block text-xs font-bold uppercase tracking-widest text-brand-ink/70">
+                  How Can We Help?
+                </span>
+                <textarea
+                  required
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  placeholder="Describe the problem or the service you need…"
+                  className={`${inputClass} resize-none`}
+                />
+              </label>
+              <button
+                type="submit"
+                className="btn-sticker mt-5 w-full bg-brand-ink px-6 py-4 text-base text-white transition-transform hover:-translate-y-0.5"
+              >
+                <Send className="h-5 w-5" /> Send Enquiry
+              </button>
+              <p className="mt-3 text-center text-xs text-brand-ink/60">
+                Prefer to talk? Call{" "}
+                <a
+                  href={site.phoneHref}
+                  className="font-bold text-brand-blue-dark"
+                >
+                  {site.phoneDisplay}
+                </a>
               </p>
-            )}
-          </div>
-
-          {/* Status Message */}
-          {status === "success" && (
-            <p className="text-green-600 font-medium md:col-span-2 text-center">
-              ✅ Message sent successfully!
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-red-600 font-medium md:col-span-2 text-center">
-              ❌ Failed to send message. Please try again.
-            </p>
-          )}
-
-          {/* Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full md:col-span-2 bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 disabled:opacity-50"
-          >
-            {isSubmitting ? "Sending..." : "Send A Message"}
-          </button>
-        </form>
+            </form>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

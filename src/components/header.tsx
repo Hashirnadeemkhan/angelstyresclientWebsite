@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navLinks, site } from "@/lib/site";
 
 export function Header() {
@@ -58,11 +58,10 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href={site.phoneHref}
-            className="btn-sticker hidden bg-brand-gold px-5 py-2.5 text-sm text-brand-ink shadow-hard hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_rgba(10,13,20,1)] sm:inline-flex"
+            href="#contact"
+            className="btn-sticker hidden bg-brand-gold px-6 py-2.5 text-sm text-brand-ink shadow-hard hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_rgba(10,13,20,1)] sm:inline-flex"
           >
-            <Phone className="h-4 w-4" />
-            {site.phoneDisplay}
+            Book Now
           </a>
           <button
             aria-label="Toggle menu"
@@ -91,10 +90,11 @@ export function Header() {
             </a>
           ))}
           <a
-            href={site.phoneHref}
+            href="#contact"
+            onClick={() => setOpen(false)}
             className="btn-sticker mt-2 bg-brand-gold px-5 py-3 text-base text-brand-ink"
           >
-            <Phone className="h-4 w-4" /> Call {site.phoneDisplay}
+            Book Now
           </a>
         </nav>
       </div>
